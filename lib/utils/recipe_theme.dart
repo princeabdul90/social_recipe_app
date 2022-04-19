@@ -82,9 +82,9 @@ class RecipeTheme {
     return ThemeData(
       brightness: Brightness.dark,
       textTheme: darkThemeText,
-      appBarTheme:  const AppBarTheme(
+      appBarTheme:  AppBarTheme(
         foregroundColor: Colors.white,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.grey[900],
       ),
 
       floatingActionButtonTheme: const FloatingActionButtonThemeData(

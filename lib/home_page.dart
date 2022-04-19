@@ -13,8 +13,7 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> pages = <Widget>[
     const Card1(),
-    //todo: replace with card 2
-    Container(color: Colors.red,),
+    const Card2(),
     //todo: replace with card 3
     Container(color: Colors.lightBlueAccent,),
   ];
