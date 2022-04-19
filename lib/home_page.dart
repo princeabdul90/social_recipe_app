@@ -14,8 +14,7 @@ class _HomePageState extends State<HomePage> {
   List<Widget> pages = <Widget>[
     const Card1(),
     const Card2(),
-    //todo: replace with card 3
-    Container(color: Colors.lightBlueAccent,),
+    const Card3(),
   ];
 
   void _onTappedItem(int index) {
