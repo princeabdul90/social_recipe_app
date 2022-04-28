@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/models/models.dart';
 import 'package:recipe_app/utils/recipe_theme.dart';
 
 class Card1 extends StatelessWidget {
-  const Card1({Key? key}) : super(key: key);
-
-  final String category = "Editor\'s Choice";
-  final String title = "The Art of Dough";
-  final String description = "Learn to make the perfect bread";
-  final String chef = "Ray Wenderlich";
-
-  //todo: position text on different position on screen
+  final ExploreRecipe recipe;
+  const Card1({Key? key, required this.recipe}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,22 +15,22 @@ class Card1 extends StatelessWidget {
           height: 450,
           width: 350,
         ),
-        decoration: const BoxDecoration(
+        decoration:  BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/mag1.png'),
+              image: AssetImage(recipe.backgroundImage),
               fit: BoxFit.cover,
             ),
-            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+            borderRadius: const BorderRadius.all(Radius.circular(10.0))),
         child: Stack(
           children: [
             Text(
-              category,
+              recipe.subtitle,
               style: RecipeTheme.darkThemeText.bodyText1,
             ),
             Positioned(
               top: 20,
               child: Text(
-                title,
+                recipe.title,
                 style: RecipeTheme.darkThemeText.headline2,
               ),
             ),
@@ -43,7 +38,7 @@ class Card1 extends StatelessWidget {
               bottom: 30,
               right: 0,
               child: Text(
-                description,
+                recipe.message,
                 style: RecipeTheme.darkThemeText.bodyText1,
               ),
             ),
@@ -51,7 +46,7 @@ class Card1 extends StatelessWidget {
               bottom: 10,
               right: 0,
               child: Text(
-                chef,
+                recipe.role,
                 style: RecipeTheme.darkThemeText.bodyText1,
               ),
             ),

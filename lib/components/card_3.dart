@@ -1,12 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:recipe_app/models/models.dart';
 import 'package:recipe_app/utils/recipe_theme.dart';
 
 class Card3 extends StatelessWidget {
-  const Card3({Key? key}) : super(key: key);
+  final ExploreRecipe recipe;
+  const Card3({Key? key, required this.recipe}) : super(key: key);
 
-  //todo: add Container, column, icon and text
-  //todo: add chip widget on top of container
+  List<Widget> createChips() {
+    final chips = <Widget>[];
+    recipe.tags.take(6).forEach((element) {
+      final chip = Chip(
+        label: Text(
+          element,
+          style: RecipeTheme.darkThemeText.bodyText1,
+        ),
+        backgroundColor: Colors.black.withOpacity(0.7),
+      );
+      chips.add(chip);
+    });
+    return chips;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +30,12 @@ class Card3 extends StatelessWidget {
             height: 450,
             width: 350,
           ),
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/images/mag3.png"), fit: BoxFit.cover),
-            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              image: AssetImage(recipe.backgroundImage),
+              fit: BoxFit.cover,
+            ),
+            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
           ),
           child: Stack(
             children: [
@@ -43,57 +59,22 @@ class Card3 extends StatelessWidget {
                       height: 8,
                     ),
                     Text(
-                      'Recipe Trends',
+                      recipe.title,
                       style: RecipeTheme.darkThemeText.headline2,
                     ),
                     const SizedBox(
                       height: 30,
                     ),
-
                     Center(
                       child: Wrap(
                         alignment: WrapAlignment.start,
                         spacing: 16,
-                        children: [
-                          Chip(
-                              label: Text(
-                                'Healthy',
-                                style: RecipeTheme.darkThemeText.bodyText1,
-                              ),
-                            backgroundColor: Colors.black.withOpacity(0.7),
-                            onDeleted: ()=>print("deleted"),
-                          ),
-                          Chip(
-                            label: Text(
-                              'Veggan',
-                              style: RecipeTheme.darkThemeText.bodyText1,
-                            ),
-                            backgroundColor: Colors.black.withOpacity(0.7),
-                            onDeleted: ()=>print("deleted"),
-                          ),
-                          Chip(
-                            label: Text(
-                              'Mint',
-                              style: RecipeTheme.darkThemeText.bodyText1,
-                            ),
-                            backgroundColor: Colors.black.withOpacity(0.7),
-                            onDeleted: ()=>print("deleted"),
-                          ),
-                          Chip(
-                            label: Text(
-                              'Lemongrass',
-                              style: RecipeTheme.darkThemeText.bodyText1,
-                            ),
-                            backgroundColor: Colors.black.withOpacity(0.7),
-                            onDeleted: ()=>print("deleted"),
-                          ),
-                        ],
+                        children: createChips(),
                       ),
                     ),
                   ],
                 ),
               ),
-
             ],
           )),
     );
