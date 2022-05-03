@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recipe_app/utils/recipe_theme.dart';
 import 'circle_image.dart';
 
-class AuthorCard extends StatelessWidget {
+class AuthorCard extends StatefulWidget {
   const AuthorCard(
       {Key? key,
       required this.authorName,
@@ -15,6 +15,20 @@ class AuthorCard extends StatelessWidget {
   final ImageProvider? imageProvider;
 
   @override
+  State<AuthorCard> createState() => _AuthorCardState();
+}
+
+class _AuthorCardState extends State<AuthorCard> {
+  bool _isFavorited = false;
+
+  void onFavorited(){
+    setState(() {
+      _isFavorited = !_isFavorited;
+    });
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16.0),
@@ -23,27 +37,24 @@ class AuthorCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              CircleImage(imageRadius: 28, imageProvider: imageProvider,),
+              CircleImage(imageRadius: 28, imageProvider: widget.imageProvider,),
               const SizedBox(width: 8,),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(authorName, style: RecipeTheme.lightThemeText.headline2,),
-                  Text(title, style: RecipeTheme.lightThemeText.headline3,),
+                  Text(widget.authorName, style: RecipeTheme.lightThemeText.headline2,),
+                  Text(widget.title, style: RecipeTheme.lightThemeText.headline3,),
                 ],
               )
             ],
           ),
-          //todo: show snackBar when the user tap on favorite button.
+
           IconButton(
-            onPressed: () {
-              const snackBar =  SnackBar(content: Text("Favorite Pressed"));
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            },
+            onPressed: onFavorited,
             icon: Icon(
-              Icons.favorite_border,
+              _isFavorited ? Icons.favorite : Icons.favorite_border,
               size: 30,
-              color: Colors.grey[400],
+              color: Colors.red[400],
             ),
           ),
         ],

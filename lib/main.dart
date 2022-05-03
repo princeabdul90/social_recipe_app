@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final theme = RecipeTheme.dark();
+    final theme = RecipeTheme.light();
     return MaterialApp(
       title: 'Recipe App',
       theme:theme,
