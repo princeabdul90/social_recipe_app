@@ -21,7 +21,7 @@ class AuthorCard extends StatefulWidget {
 class _AuthorCardState extends State<AuthorCard> {
   bool _isFavorited = false;
 
-  void onFavorited(){
+  void onTappedFavorited(){
     setState(() {
       _isFavorited = !_isFavorited;
     });
@@ -50,7 +50,7 @@ class _AuthorCardState extends State<AuthorCard> {
           ),
 
           IconButton(
-            onPressed: onFavorited,
+            onPressed: onTappedFavorited,
             icon: Icon(
               _isFavorited ? Icons.favorite : Icons.favorite_border,
               size: 30,
