@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/screens/explore_screen.dart';
+import 'package:recipe_app/screens/recipe_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,8 +14,7 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> pages = <Widget>[
      ExploreScreen(),
-    //todo: Replace Recipe screen
-    Container(color: Colors.blue,),
+    RecipeScreen(),
     Container(color: Colors.red,),
   ];
 
